@@ -25,9 +25,16 @@ app.get('/math-operations', (req, res) => {
 
 // POST to recieve desired math operations.
 app.post('/math-operations', (req, res) => {
-    mathOperations.push(req.body);
-    console.log('Incoming payload /math-operations', req.body);
-    res.status(201).send('operation received');
+    let newData = req.body;
+    // check if the data received is relevant.
+    if(newData.num1 === '' || newData.num2 === '' || newData.operator === '') {
+        res.status(400).send('Please select an operator and fill inputs.');
+    } else {
+        // push operation to mathOperations array.
+        mathOperations.push(req.body);
+        console.log('Incoming payload /math-operations', req.body);
+        res.status(201).send('operation received');
+    }  
 });
 
 

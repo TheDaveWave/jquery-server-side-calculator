@@ -27,9 +27,12 @@ function sendOperation () {
             operator: operator
         }
     }).then((response) => {
-
+        
     }).catch((error) => {
         console.log(error);
+        if(error.status === 400) {
+            alert('Fill inputs and select operator.');
+        }
     });
 
     // empty inputs
