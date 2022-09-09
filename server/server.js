@@ -18,7 +18,22 @@ let mathOperations = [];
 
 // Posts and Gets
 
+// GET to send the math operations history.
+app.get('/math-operations', (req, res) => {
+    res.send(mathOperations);
+});
 
+// POST to recieve desired math operations.
+app.post('/math-operations', (req, res) => {
+
+});
+
+
+// the /answer to life
+// GET to send the result of the computation.
+app.get('/answer', (req, res) => {
+
+});
 
 // local port to liston on.
 app.listen(PORT, () => {
