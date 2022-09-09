@@ -25,11 +25,12 @@ app.get('/math-operations', (req, res) => {
 
 // POST to recieve desired math operations.
 app.post('/math-operations', (req, res) => {
-
+    mathOperations.push(req.body);
+    res.status(201).send('operation received');
 });
 
 
-// the /answer to life
+// the /answer to life = 42
 // GET to send the result of the computation.
 app.get('/answer', (req, res) => {
 

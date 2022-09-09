@@ -1,4 +1,5 @@
 /// <reference path="jQuery.js" />
+
 $(readyNow);
 
 function readyNow () {
@@ -20,4 +21,15 @@ function getOperation (event) {
     $('#num2').val('');
 }
 
-// function to send mathmatical operations to server.
+// function to send mathematical operations to server.
+function sendOperation () {
+    $.ajax({
+        type: 'POST',
+        url: '/math-operations',
+        data: operation
+    }).then((response) => {
+        
+    }).catch((error) => {
+        console.log(error);
+    });
+}
