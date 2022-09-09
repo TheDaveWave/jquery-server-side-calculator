@@ -10,7 +10,13 @@ app.use(express.static('server/public'));
 app.use(express.urlencoded({extended : true}));
 
 
+// Global variables
+// set variable equal to an array that will store the history
+// of math operations.
+let mathOperations = [];
 
+
+// Posts and Gets
 
 
 
