@@ -58,7 +58,7 @@ app.post('/math-operations', (req, res) => {
 // the /answer to life = 42
 // GET to send the result of the computation.
 app.get('/answer', (req, res) => {
-
+    res.send('42');
 });
 
 // local port to liston on.
