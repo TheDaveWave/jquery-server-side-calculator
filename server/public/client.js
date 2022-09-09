@@ -4,21 +4,16 @@ $(readyNow);
 
 function readyNow () {
     $('.operator').on('click', getOperation);
+    $('#equals').on('click', sendOperation);
 }
 
-// store operator into variable
-let operation = {};
+// store operator that was clicked.
+let operator = '';
 
 // function to get the operator from the corresponding button.
 function getOperation (event) {
-    operation.num1 = $('#num1').val();
-    operation.num2 = $('#num2').val();
-    operation.operator = $(event.target).text();
-    console.log(operation);
-
-    // empty inputs
-    $('#num1').val('');
-    $('#num2').val('');
+    operator = $(event.target).text();
+    console.log(operator);
 }
 
 // function to send mathematical operations to server.
@@ -26,10 +21,18 @@ function sendOperation () {
     $.ajax({
         type: 'POST',
         url: '/math-operations',
-        data: operation
+        data: {
+            num1: $('#num1').val(),
+            num2: $('#num2').val(),
+            operator: operator
+        }
     }).then((response) => {
-        
+
     }).catch((error) => {
         console.log(error);
     });
+
+    // empty inputs
+    $('#num1').val('');
+    $('#num2').val('');
 }
