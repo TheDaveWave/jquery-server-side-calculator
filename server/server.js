@@ -6,7 +6,6 @@ const PORT = 5000;
 
 
 app.use(express.static('server/public'));
-// enable requests?
 app.use(express.urlencoded({extended : true}));
 
 
@@ -14,6 +13,23 @@ app.use(express.urlencoded({extended : true}));
 // set variable equal to an array that will store the history
 // of math operations.
 let mathOperations = [];
+
+// functions
+
+function calculate (operation) {
+
+}
+
+// convert the request object into a new object.
+// primarily for readability. 
+function convertReq (req) {
+    let obj = {
+        num1: Number(req.body.num1),
+        num2: Number(req.body.num2),
+        operator: req.body.operator
+    }
+    return obj;
+}
 
 
 // Posts and Gets
@@ -30,9 +46,10 @@ app.post('/math-operations', (req, res) => {
     if(newData.num1 === '' || newData.num2 === '' || newData.operator === '') {
         res.status(400).send('Please select an operator and fill inputs.');
     } else {
-        // push operation to mathOperations array.
-        mathOperations.push(req.body);
         console.log('Incoming payload /math-operations', req.body);
+        let operation = convertReq(req);
+        // push operation to mathOperations array.
+        mathOperations.push(operation);
         res.status(201).send('operation received');
     }  
 });
