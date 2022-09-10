@@ -5,7 +5,8 @@ $(readyNow);
 function readyNow () {
     // initialization
     grabAnswer();
-
+    grabHistory();
+    
     // event handlers
     $('.operator').on('click', getOperation);
     $('#equals').on('click', sendOperation);
@@ -41,6 +42,7 @@ function sendOperation () {
         }
     }).then((response) => {
         grabAnswer();
+        grabHistory();
     }).catch((error) => {
         console.log(error);
         if(error.status === 400) {
@@ -59,7 +61,7 @@ function grabHistory () {
         type: 'GET',
         url: '/math-operations'
     }).then((response) => {
-
+        appendHistory(response);
     }).catch((error) => {
         console.log(error);
     });
@@ -67,7 +69,12 @@ function grabHistory () {
 
 // function to append history to the DOM.
 function appendHistory (response) {
-    
+    $('#history').empty();
+    for (const operation of response) {
+        $('#history').append(`
+            <li>${operation}</li>
+        `);
+    }
 }
 
 // function to GET the result of the operation and append to DOM.
