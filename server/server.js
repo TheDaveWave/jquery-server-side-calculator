@@ -41,6 +41,12 @@ function calculate (operation) {
     return result;
 }
 
+// convert successful operation into a string.
+function operationToString (operation, result) {
+    let op = operation;
+    return `${op.num1} ${op.operator} ${op.num2} = ${result}`; 
+}
+
 // convert the request object into a new object.
 // primarily for readability. 
 function convertReq (req) {
@@ -70,9 +76,10 @@ app.post('/math-operations', (req, res) => {
         console.log('Incoming payload /math-operations', req.body);
         let operation = convertReq(req);
         // perform calculation.
-        calculate(operation);
+        let result = calculate(operation);
+        // get operation as a string.
         // push operation to mathOperations array.
-        mathOperations.push(operation);
+        mathOperations.push(operationToString(operation, result));
         res.status(201).send('operation received');
     }  
 });
