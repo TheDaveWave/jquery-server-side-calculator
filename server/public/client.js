@@ -45,6 +45,7 @@ function sendOperation () {
     }).then((response) => {
         grabAnswer();
         grabHistory();
+        operator = '';
     }).catch((error) => {
         console.log(error);
         if(error.status === 400) {
