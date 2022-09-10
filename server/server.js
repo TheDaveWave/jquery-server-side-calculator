@@ -15,9 +15,30 @@ app.use(express.urlencoded({extended : true}));
 let mathOperations = [];
 
 // functions
-
+// perform calculations based on operator passed in.
 function calculate (operation) {
-
+    // console.log(operation);
+    let op = operation;
+    // console.log(op.operator);
+    let result = 0;
+    switch(op.operator) {
+        case '+':
+            result = op.num1 + op.num2;
+            break;
+        case '-':
+            result = op.num1 - op.num2;
+            break;
+        case '*':
+            result = op.num1 * op.num2;
+            break;
+        case '/':
+            result = op.num1 / op.num2;
+            break;
+        default:
+            console.log('Does not compute.');
+    }
+    console.log(result);
+    return result;
 }
 
 // convert the request object into a new object.
@@ -48,6 +69,8 @@ app.post('/math-operations', (req, res) => {
     } else {
         console.log('Incoming payload /math-operations', req.body);
         let operation = convertReq(req);
+        // perform calculation.
+        calculate(operation);
         // push operation to mathOperations array.
         mathOperations.push(operation);
         res.status(201).send('operation received');
