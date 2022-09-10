@@ -6,7 +6,7 @@ function readyNow () {
     // initialization
     grabAnswer();
     grabHistory();
-    
+
     // event handlers
     $('.operator').on('click', getOperation);
     $('#equals').on('click', sendOperation);
@@ -22,6 +22,8 @@ function clear() {
     // console.log(operator);
     $('#num1').val('');
     $('#num2').val('');
+
+    // resetResult();
 }
 
 // function to get the operator from the corresponding button.
@@ -71,7 +73,7 @@ function grabHistory () {
 function appendHistory (response) {
     $('#history').empty();
     for (const operation of response) {
-        $('#history').append(`
+        $('#history').prepend(`
             <li>${operation}</li>
         `);
     }
@@ -84,6 +86,18 @@ function grabAnswer () {
         url: '/answer'
     }).then((response) => {
         // console.log(response);
+        $('#result').text(response);
+    }).catch((error) => {
+        console.log(error);
+    });
+}
+
+// function to reset server result to 0;
+function resetResult () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/answer'
+    }).then((response) => {
         $('#result').text(response);
     }).catch((error) => {
         console.log(error);

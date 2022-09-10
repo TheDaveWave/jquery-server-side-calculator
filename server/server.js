@@ -49,6 +49,14 @@ app.get('/answer', (req, res) => {
     res.send(`${result}`);
 });
 
+// DELTE request to reset result.
+app.delete('/answer', (req, res) => {
+    console.log('DELETE request /answer');
+    // do not know if this is good practice:
+    result = 0;
+    res.send(`${result}`);
+});
+
 // local port to liston on.
 app.listen(PORT, () => {
     console.log('Listening on port', PORT);
