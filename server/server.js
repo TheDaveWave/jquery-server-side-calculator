@@ -15,6 +15,7 @@ const {calculate, operationToString, convertReq} = require('./modules/functions'
 // set variable equal to an array that will store the history
 // of math operations.
 let mathOperations = [];
+let result = 0;
 
 // Posts and Gets
 
@@ -33,7 +34,7 @@ app.post('/math-operations', (req, res) => {
         console.log('Incoming payload /math-operations', req.body);
         let operation = convertReq(req);
         // perform calculation.
-        let result = calculate(operation);
+        result = calculate(operation);
         // get operation as a string.
         // push operation to mathOperations array.
         mathOperations.push(operationToString(operation, result));
@@ -45,7 +46,7 @@ app.post('/math-operations', (req, res) => {
 // the /answer to life = 42
 // GET to send the result of the computation.
 app.get('/answer', (req, res) => {
-    res.send('42');
+    res.send(`${result}`);
 });
 
 // local port to liston on.

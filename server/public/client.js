@@ -3,6 +3,10 @@
 $(readyNow);
 
 function readyNow () {
+    // initialization
+    grabAnswer();
+
+    // event handlers
     $('.operator').on('click', getOperation);
     $('#equals').on('click', sendOperation);
     $('#clear').on('click', clear);
@@ -36,7 +40,7 @@ function sendOperation () {
             operator: operator
         }
     }).then((response) => {
-        
+        grabAnswer();
     }).catch((error) => {
         console.log(error);
         if(error.status === 400) {
@@ -47,4 +51,34 @@ function sendOperation () {
     // empty inputs
     $('#num1').val('');
     $('#num2').val('');
+}
+
+// function to GET the operation history and append to DOM.
+function grabHistory () {
+    $.ajax({
+        type: 'GET',
+        url: '/math-operations'
+    }).then((response) => {
+
+    }).catch((error) => {
+        console.log(error);
+    });
+}
+
+// function to append history to the DOM.
+function appendHistory (response) {
+    
+}
+
+// function to GET the result of the operation and append to DOM.
+function grabAnswer () {
+    $.ajax({
+        type: 'GET',
+        url: '/answer'
+    }).then((response) => {
+        // console.log(response);
+        $('#result').text(response);
+    }).catch((error) => {
+        console.log(error);
+    });
 }
