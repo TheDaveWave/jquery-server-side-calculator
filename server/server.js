@@ -54,6 +54,7 @@ app.delete('/answer', (req, res) => {
     console.log('DELETE request /answer');
     // do not know if this is good practice:
     result = 0;
+    mathOperations = [];
     res.send(`${result}`);
 });
 

@@ -41,7 +41,8 @@ function clear() {
     operator = '';
     // console.log(operator);
     $('#display').val('');
-    // resetResult();
+    resetResult();
+    grabHistory();
 }
 
 // function to get the operator from the corresponding button.
