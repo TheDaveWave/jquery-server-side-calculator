@@ -24,6 +24,14 @@ app.get('/math-operations', (req, res) => {
     res.send(mathOperations);
 });
 
+// DELETE to reset the mathOperations array.
+app.delete('/math-operations', (req, res) => {
+    console.log('DELETE request for /math-operations');
+    // set mathOperations to an empty array.
+    mathOperations = [];
+    res.send(mathOperations);
+});
+
 // POST to recieve desired math operations.
 app.post('/math-operations', (req, res) => {
     let newData = req.body;
@@ -53,8 +61,8 @@ app.get('/answer', (req, res) => {
 app.delete('/answer', (req, res) => {
     console.log('DELETE request /answer');
     // do not know if this is good practice:
+    // set result = 0.
     result = 0;
-    mathOperations = [];
     res.send(`${result}`);
 });
 

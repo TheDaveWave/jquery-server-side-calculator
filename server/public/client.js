@@ -12,6 +12,7 @@ function readyNow () {
     $('.num').on('click', getKeypadPress);
     $('#equals').on('click', sendOperation);
     $('#clear').on('click', clear);
+    $('#empty-history').on('click', resetHistory);
 }
 
 // store operator that was clicked.
@@ -42,7 +43,7 @@ function clear() {
     // console.log(operator);
     $('#display').val('');
     resetResult();
-    grabHistory();
+    // grabHistory();
 }
 
 // function to get the operator from the corresponding button.
@@ -126,6 +127,19 @@ function resetResult () {
         url: '/answer'
     }).then((response) => {
         $('#result').text(response);
+    }).catch((error) => {
+        console.log(error);
+    });
+}
+
+// function to DELETE server math operations history.
+function resetHistory () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/math-operations'
+    }).then((response) => {
+        appendHistory(response);
+        clear();
     }).catch((error) => {
         console.log(error);
     });
