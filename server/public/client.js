@@ -19,7 +19,6 @@ function readyNow () {
 let operator = '';
 let num1 = 0;
 
-
 // function to get the value of the button that was just clicked.
 function getKeypadPress (event) {
     let num = $(event.target).text();
@@ -32,8 +31,25 @@ function getKeypadPress (event) {
 function appendDisplay(num) {
     let display = $('#display');
     // add num to the display value and display it.
-    display.val(`${display.val()}` +  `${num}`);
+    display.val(`${display.val()}` + `${num}`);
     // console.log(display.val());
+}
+
+// function to get the operator from the corresponding button.
+// modified to get the value of display input.
+function getOperation (event) {
+    let display = $('#display');
+
+    operator = $(event.target).text();
+    num1 = $('#display').val();
+
+    display.val(`${display.val()}` + `${operator}`);
+
+    // clear the display
+    // $('#display').val('');
+
+    console.log(num1);
+    console.log(operator);
 }
 
 
@@ -46,25 +62,17 @@ function clear() {
     // grabHistory();
 }
 
-// function to get the operator from the corresponding button.
-// modified to get the value of display input.
-function getOperation (event) {
-    operator = $(event.target).text();
-    num1 = $('#display').val();
-    $('#display').val('');
-    console.log(num1);
-    console.log(operator);
-}
-
 // function to send mathematical operations to server.
 // modified to use display input value as num2.
 function sendOperation () {
+    let num2 = $('#display').val();
+    num2 = num2.substring(num2.indexOf(operator) + 1);
     $.ajax({
         type: 'POST',
         url: '/math-operations',
         data: {
             num1: num1,
-            num2: $('#display').val(),
+            num2: num2,
             operator: operator
         }
     }).then((response) => {
