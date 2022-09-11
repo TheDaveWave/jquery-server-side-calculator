@@ -40,8 +40,6 @@ function appendDisplay(num) {
 function clear() {
     operator = '';
     // console.log(operator);
-    // $('#num1').val('');
-    // $('#num2').val('');
     $('#display').val('');
     // resetResult();
 }
