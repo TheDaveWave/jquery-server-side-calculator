@@ -18,6 +18,7 @@ function readyNow () {
 // store operator that was clicked.
 let operator = '';
 let num1 = 0;
+let check = false;
 
 // function to get the value of the button that was just clicked.
 function getKeypadPress (event) {
@@ -31,8 +32,12 @@ function getKeypadPress (event) {
 function appendDisplay(num) {
     let display = $('#display');
     // add num to the display value and display it.
+    if(check === false) {
+        display.val('');
+    }
     display.val(`${display.val()}` + `${num}`);
     // console.log(display.val());
+    check = true;
 }
 
 // function to get the operator from the corresponding button.
@@ -57,7 +62,7 @@ function getOperation (event) {
 function clear() {
     operator = '';
     // console.log(operator);
-    $('#display').val('');
+    // $('#display').val('');
     resetResult();
     // grabHistory();
 }
@@ -79,6 +84,7 @@ function sendOperation () {
         grabAnswer();
         grabHistory();
         operator = '';
+        $('#display').val(0);
     }).catch((error) => {
         console.log(error);
         if(error.status === 400) {
@@ -87,7 +93,6 @@ function sendOperation () {
     });
 
     // empty input
-    $('#display').val('');
 }
 
 // function to GET the operation history and append to DOM.
@@ -122,7 +127,9 @@ function grabAnswer () {
         if(response === '42') {
             alert(`You calculated the meaning of life: ${response}`);
         }
-        $('#result').text(response);
+        // $('#result').text(response);
+        $('#display').val(response);
+        check = false;
     }).catch((error) => {
         console.log(error);
     });
@@ -134,7 +141,9 @@ function resetResult () {
         type: 'DELETE',
         url: '/answer'
     }).then((response) => {
-        $('#result').text(response);
+        // $('#result').text(response);
+        $('#display').val(response);
+        check = false;
     }).catch((error) => {
         console.log(error);
     });
