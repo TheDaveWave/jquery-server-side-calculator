@@ -110,6 +110,9 @@ function grabAnswer () {
         url: '/answer'
     }).then((response) => {
         // console.log(response);
+        if(response === '42') {
+            alert(`You calculated the meaning of life: ${response}`);
+        }
         $('#result').text(response);
     }).catch((error) => {
         console.log(error);
