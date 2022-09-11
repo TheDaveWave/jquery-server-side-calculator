@@ -16,18 +16,23 @@ function readyNow () {
 
 // store operator that was clicked.
 let operator = '';
+let num1 = 0;
 
 
-// loop to add text to input display
-// get value of display when operator is clicked
-// clear box
-// loop again
-// get value of box again
-// submit to POST when equals is clicked.
-
+// function to get the value of the button that was just clicked.
 function getKeypadPress (event) {
     let num = $(event.target).text();
-    console.log(num);
+    // console.log(num);
+    appendDisplay(num);
+    return num;
+}
+
+// function to append the num class buttons values into the display.
+function appendDisplay(num) {
+    let display = $('#display');
+    // add num to the display value and display it.
+    display.val(`${display.val()}` +  `${num}`);
+    // console.log(display.val());
 }
 
 
@@ -35,26 +40,31 @@ function getKeypadPress (event) {
 function clear() {
     operator = '';
     // console.log(operator);
-    $('#num1').val('');
-    $('#num2').val('');
-
+    // $('#num1').val('');
+    // $('#num2').val('');
+    $('#display').val('');
     // resetResult();
 }
 
 // function to get the operator from the corresponding button.
+// modified to get the value of display input.
 function getOperation (event) {
     operator = $(event.target).text();
+    num1 = $('#display').val();
+    $('#display').val('');
+    console.log(num1);
     console.log(operator);
 }
 
 // function to send mathematical operations to server.
+// modified to use display input value as num2.
 function sendOperation () {
     $.ajax({
         type: 'POST',
         url: '/math-operations',
         data: {
-            num1: $('#num1').val(),
-            num2: $('#num2').val(),
+            num1: num1,
+            num2: $('#display').val(),
             operator: operator
         }
     }).then((response) => {
@@ -69,8 +79,7 @@ function sendOperation () {
     });
 
     // empty inputs
-    $('#num1').val('');
-    $('#num2').val('');
+    $('#display').val('');
 }
 
 // function to GET the operation history and append to DOM.
