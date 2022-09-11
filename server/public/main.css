@@ -16,6 +16,7 @@ button {
 }
 
 main {
+    margin: 0 auto;
     width: 50%;
     min-width: 500px;
 }
@@ -25,5 +26,5 @@ main {
     background-color: rgba(255, 255, 255, 0.3);
     margin: 0 auto;
     width: 25%;
-    min-width:25%;
+    min-width: 178px;
 }
