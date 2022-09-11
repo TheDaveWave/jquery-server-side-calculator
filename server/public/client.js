@@ -16,6 +16,14 @@ function readyNow () {
 // store operator that was clicked.
 let operator = '';
 
+
+// loop to add text to input display
+// get value of display when operator is clicked
+// clear box
+// loop again
+// get value of box again
+// submit to POST when equals is clicked.
+
 // function to clear inputs and reset operator.
 function clear() {
     operator = '';
