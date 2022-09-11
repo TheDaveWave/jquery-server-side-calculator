@@ -86,7 +86,7 @@ function sendOperation () {
         }
     });
 
-    // empty inputs
+    // empty input
     $('#display').val('');
 }
 
