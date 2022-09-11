@@ -9,6 +9,7 @@ function readyNow () {
 
     // event handlers
     $('.operator').on('click', getOperation);
+    $('.num').on('click', getKeypadPress);
     $('#equals').on('click', sendOperation);
     $('#clear').on('click', clear);
 }
@@ -23,6 +24,12 @@ let operator = '';
 // loop again
 // get value of box again
 // submit to POST when equals is clicked.
+
+function getKeypadPress (event) {
+    let num = $(event.target).text();
+    console.log(num);
+}
+
 
 // function to clear inputs and reset operator.
 function clear() {
