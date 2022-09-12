@@ -24,7 +24,7 @@ function calculate (operation) {
             console.log('Does not compute.');
     }
     console.log(result);
-    return result.toPrecision(4);
+    return Math.round(result*100)/100;
 }
 
 // convert successful operation into a string.
