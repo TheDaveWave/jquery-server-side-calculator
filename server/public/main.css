@@ -1,5 +1,6 @@
 body {
-    background-image: url('images/ape-valentin-jorel-Mpyn-ne644Y-unsplash.jpeg');
+    /* background-image: url('images/ape-valentin-jorel-Mpyn-ne644Y-unsplash.jpeg'); */
+    background-image: url('./images/clockwise-spinning.gif');
     background-size: cover;
     background-attachment: fixed;
     color: #fff;
