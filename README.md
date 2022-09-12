@@ -1,4 +1,4 @@
-# Server Side Salary Calculator
+# Server Side Calculator
 
 ## Description
 
