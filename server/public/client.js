@@ -1,5 +1,6 @@
 /// <reference path="jQuery.js" />
 
+
 $(readyNow);
 
 function readyNow () {
@@ -23,18 +24,29 @@ let check = false;
 // function to get the value of the button that was just clicked.
 function getKeypadPress (event) {
     let num = $(event.target).text();
+    $('#clear').text('C');
+    if(num !== '0' && num !== '.') {
+        appendDisplay(num);
+    } else if (num === '.') {
+        console.log(num, 'should be .');
+        check = true;
+        appendDisplay(num);
+    } else if ($('#display').val() !== '0') {
+        appendDisplay(num);
+    }
     // console.log(num);
-    appendDisplay(num);
     return num;
 }
 
 // function to append the num class buttons values into the display.
 function appendDisplay(num) {
     let display = $('#display');
-    // add num to the display value and display it.
+    // if check is false empty display.
+    console.log(check);
     if(check === false) {
         display.val('');
     }
+    // add num to the display value and display it.
     display.val(`${display.val()}` + `${num}`);
     // console.log(display.val());
     check = true;
@@ -61,10 +73,13 @@ function getOperation (event) {
 // function to clear inputs and reset operator.
 function clear() {
     operator = '';
+    let clr = $('#clear');
+    if(clr.text() === 'AC'){
+        resetHistory();
+    }
     // console.log(operator);
-    // $('#display').val('');
     resetResult();
-    // grabHistory();
+    clr.text('AC');
 }
 
 // function to send mathematical operations to server.
@@ -84,15 +99,15 @@ function sendOperation () {
         grabAnswer();
         grabHistory();
         operator = '';
+        // rest input display
         $('#display').val(0);
+        check = false;
     }).catch((error) => {
         console.log(error);
         if(error.status === 400) {
             alert('Fill inputs and select operator.');
         }
     });
-
-    // empty input
 }
 
 // function to GET the operation history and append to DOM.
@@ -156,7 +171,7 @@ function resetHistory () {
         url: '/math-operations'
     }).then((response) => {
         appendHistory(response);
-        clear();
+        // $('#clear').text('C');
     }).catch((error) => {
         console.log(error);
     });
