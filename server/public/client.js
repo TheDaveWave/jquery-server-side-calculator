@@ -7,6 +7,8 @@ function readyNow () {
     // initialization
     grabAnswer();
     grabHistory();
+    // console.log($('#display').val());
+    // console.log($('#display').text());
 
     // event handlers
     $('.operator').on('click', getOperation);
@@ -26,12 +28,15 @@ function getKeypadPress (event) {
     let num = $(event.target).text();
     $('#clear').text('C');
     if(num !== '0' && num !== '.') {
+        // console.log(check, 'first check in key');
         appendDisplay(num);
     } else if (num === '.') {
-        console.log(num, 'should be .');
+        // console.log(num, 'should be .');
         check = true;
+        // console.log(check, 'second check in key');
         appendDisplay(num);
     } else if ($('#display').val() !== '0') {
+        // console.log(check, 'third check in key');
         appendDisplay(num);
     }
     // console.log(num);
@@ -42,14 +47,15 @@ function getKeypadPress (event) {
 function appendDisplay(num) {
     let display = $('#display');
     // if check is false empty display.
-    console.log(check);
+    // console.log(check);
     if(check === false) {
         display.val('');
-    }
+    } 
     // add num to the display value and display it.
     display.val(`${display.val()}` + `${num}`);
     // console.log(display.val());
     check = true;
+    // console.log(check);
 }
 
 // function to get the operator from the corresponding button.
@@ -100,7 +106,8 @@ function sendOperation () {
         grabHistory();
         operator = '';
         // rest input display
-        $('#display').val(0);
+        $('#display').val('');
+        // console.log($('#display').val());
         check = false;
     }).catch((error) => {
         console.log(error);
@@ -158,6 +165,7 @@ function resetResult () {
     }).then((response) => {
         // $('#result').text(response);
         $('#display').val(response);
+        // console.log($('#display').val());
         check = false;
     }).catch((error) => {
         console.log(error);

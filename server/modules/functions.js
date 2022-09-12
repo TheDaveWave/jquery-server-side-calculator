@@ -24,7 +24,7 @@ function calculate (operation) {
             console.log('Does not compute.');
     }
     console.log(result);
-    return result;
+    return result.toPrecision(2);
 }
 
 // convert successful operation into a string.
