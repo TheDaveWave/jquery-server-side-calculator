@@ -1,9 +1,7 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Server Side Salary Calculator
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+_Duration: 2 Day Sprint_
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+This application simulates an easy to use calulator interface. All calculations are done and stored on a server and then returned to the user. Calculation history is displayed promptly on the webpage for reference. 
