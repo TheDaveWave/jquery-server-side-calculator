@@ -5,9 +5,23 @@ body {
     color: #fff;
 }
 
+h1 {
+    position: fixed;
+    /* margin: 5px auto; */
+    text-align: center;
+    background-color: #000;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 10px;
+    border-radius: 8%;
+}
+
 #calc-border {
     position: fixed;
     /* margin: 0 auto; */
+    top: 12.5%;
+    transform: translateY(-12.5%);
     left: 50%;
     transform: translateX(-50%);
     height: 300px;
@@ -61,13 +75,38 @@ button {
     text-align: right;
 }
 
-#empty-history {
-    height: fit-content;
-    width: fit-content;
-}
-
 main {
+    position: fixed;
     margin: 0 auto;
     width: 50%;
     min-width: 500px;
+    left: 50%;
+}
+
+#div-history {
+    background-color: #000;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60%;
+    text-align: center;
+    width: 18%;
+    /* transform: translateY(-75%); */
+    border-radius: 10%;
+    min-width: 178px;
+
+}
+
+#div-history p {
+    font-size: 20px;
+}
+
+#history {
+    text-align: center;
+    background-color: #000;
+}
+
+li {
+    text-align: left;
+    list-style: square;
 }
