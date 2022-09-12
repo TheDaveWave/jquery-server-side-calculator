@@ -21,6 +21,7 @@ This application simulates an easy to use calulator interface. All calculations 
 ## Prerequisites
 
 -[node js](https://nodejs.org/en/)
+
 -[NPM](https://docs.npmjs.com/)
 
 ## Usage
